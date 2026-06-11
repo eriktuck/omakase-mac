@@ -1,0 +1,12 @@
+# macOS cruft
+.DS_Store
+
+# Tmux: ignore installed plugins (TPM is cloned by install.sh), keep nothing tracked here
+tmux/.config/tmux/plugins/
+
+# Neovim: keep config + lazy-lock.json, ignore generated/local state
+nvim/.config/nvim/.git/
+nvim/.config/nvim/lazy-lock.json.bak
+
+# Local-only secrets / overrides (sourced by .zshrc if present, never committed)
+zsh/.zshrc.local
