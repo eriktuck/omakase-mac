@@ -27,9 +27,15 @@ outer.right = 8
 # --- Main mode bindings (alt = primary modifier, i3-style) ---
 [mode.main.binding]
 
-# Launch terminal
+# Launch terminal — open a NEW Ghostty window (⌘N if already running, else launch).
 alt-enter = '''exec-and-forget osascript -e '
-tell application "Ghostty" to activate
+if application "Ghostty" is running then
+    tell application "Ghostty" to activate
+    delay 0.05
+    tell application "System Events" to keystroke "n" using {command down}
+else
+    tell application "Ghostty" to activate
+end if
 ' '''
 
 # Focus movement

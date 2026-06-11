@@ -25,6 +25,7 @@ brew "tailscale"                      # mesh VPN (already in use — preserved)
 # --- GUI apps ---
 cask "ghostty"                        # GPU-accelerated terminal
 cask "nikitabobko/tap/aerospace"      # i3-like tiling WM
+cask "raycast"                        # launcher / Spotlight replacement (cmd+space)
 
 # --- Fonts ---
 cask "font-0xproto-nerd-font"

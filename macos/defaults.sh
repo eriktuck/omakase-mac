@@ -21,6 +21,14 @@ defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"   # list vie
 defaults write com.apple.finder ShowPathbar -bool true
 defaults write com.apple.finder ShowStatusBar -bool true
 
+# --- Spotlight: free up cmd+space for Raycast ---
+# Symbolic hotkey ID 64 = "Show Spotlight search". Disable it so Raycast can
+# claim cmd+space. (Set Raycast's hotkey in Raycast's onboarding / settings.)
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 \
+  '{ enabled = 0; value = { parameters = (32, 49, 1048576); type = standard; }; }'
+# Reload the symbolic-hotkeys settings so the change takes effect without logout.
+/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u >/dev/null 2>&1 || true
+
 # --- Mission Control: tiling-friendly (no auto-rearrange, no animations) ---
 defaults write com.apple.dock mru-spaces -bool false                 # don't reorder spaces
 defaults write com.apple.dock expose-animation-duration -float 0     # instant Mission Control
