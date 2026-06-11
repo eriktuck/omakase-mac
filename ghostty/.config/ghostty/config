@@ -2,7 +2,7 @@
 # Docs: https://ghostty.org/docs/config
 
 # --- Appearance ---
-theme = catppuccin-mocha
+theme = Catppuccin Mocha
 font-family = "0xProto Nerd Font"
 font-size = 14
 window-padding-x = 8
