@@ -41,6 +41,7 @@ end if
 # App launchers (alt = primary modifier, matching the WM bindings)
 alt-o = 'exec-and-forget open -a "Obsidian"'
 alt-b = 'exec-and-forget open -a "Google Chrome"'
+alt-slash = 'exec-and-forget open -a "1Password"'
 
 # Focus movement
 alt-h = 'focus left'
