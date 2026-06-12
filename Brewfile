@@ -19,9 +19,17 @@ brew "fd"                             # fast find
 brew "zoxide"                         # smarter cd (z)
 brew "lazygit"                        # terminal git UI
 brew "git"                            # modern git over Apple's bundled build
+brew "gh"                             # GitHub CLI (PRs, issues, gh api)
 
 # --- Networking ---
 brew "tailscale"                      # mesh VPN (already in use — preserved)
+
+# --- Development ---
+brew "uv"                             # Astral's fast Python package/project manager
+brew "node"                           # Node.js runtime (npm bundled; we default to pnpm)
+brew "pnpm"                           # preferred JS package manager — no auto-run install scripts
+cask "docker-desktop"                 # Docker Desktop: CLI + engine + GUI (daemon included)
+cask "temurin@21"                     # Eclipse Temurin JDK 21 (LTS), macOS-registered
 
 # --- GUI apps ---
 cask "ghostty"                        # GPU-accelerated terminal
