@@ -4,6 +4,7 @@
 
 # --- Taps ---
 tap "nikitabobko/tap"                 # AeroSpace tiling window manager
+tap "FelixKratz/formulae"             # SketchyBar status bar
 
 # --- CLI core ---
 brew "stow"                           # symlink farm manager (config layer)
@@ -18,6 +19,7 @@ brew "fd"                             # fast find
 brew "zoxide"                         # smarter cd (z)
 brew "lazygit"                        # terminal git UI
 brew "git"                            # modern git over Apple's bundled build
+brew "sketchybar"                     # customizable status bar (AeroSpace workspaces)
 
 # --- Networking ---
 brew "tailscale"                      # mesh VPN (already in use — preserved)

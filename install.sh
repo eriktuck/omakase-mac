@@ -4,7 +4,7 @@ set -euo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BACKUP_DIR="$HOME/.omakase-backup/$(date +%Y%m%d-%H%M%S)"
-STOW_PACKAGES=(zsh ghostty tmux aerospace starship nvim)
+STOW_PACKAGES=(zsh ghostty tmux aerospace starship nvim sketchybar)
 
 info()  { printf "\033[1;34m==>\033[0m %s\n" "$1"; }
 warn()  { printf "\033[1;33m!!\033[0m %s\n" "$1"; }
@@ -24,6 +24,9 @@ fi
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # 3. Packages -----------------------------------------------------------------
+# Newer Homebrew refuses to build formulae from third-party taps until trusted.
+info "Trusting third-party taps..."
+brew trust felixkratz/formulae || warn "Could not trust felixkratz/formulae; SketchyBar may fail to install."
 info "Installing packages from Brewfile..."
 brew bundle --file="$REPO/Brewfile"
 
@@ -69,6 +72,11 @@ nvim --headless "+Lazy! restore" +qa 2>/dev/null || \
 # 8. macOS system defaults ----------------------------------------------------
 info "Applying macOS system defaults..."
 bash "$REPO/macos/defaults.sh"
+
+# 8b. SketchyBar service ------------------------------------------------------
+# `restart` is idempotent: starts it if stopped, reloads config if running.
+info "Starting SketchyBar..."
+brew services restart sketchybar || warn "Could not start SketchyBar; run 'brew services start sketchybar'."
 
 # 9. Manual follow-ups --------------------------------------------------------
 cat <<'EOF'

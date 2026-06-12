@@ -28,8 +28,8 @@ cd ~/.omakase-mac
 
 ## Toolchain
 
-Ghostty (terminal) · Tmux (multiplexer) · AeroSpace (tiling WM) · Neovim/LazyVim (editor) ·
-Starship (prompt) · eza · bat · fzf · ripgrep · fd · zoxide · lazygit.
+Ghostty (terminal) · Tmux (multiplexer) · AeroSpace (tiling WM) · SketchyBar (status bar) ·
+Neovim/LazyVim (editor) · Starship (prompt) · eza · bat · fzf · ripgrep · fd · zoxide · lazygit.
 
 ## How it's organized
 
@@ -41,6 +41,7 @@ zsh/.zprofile                       -> ~/.zprofile
 ghostty/.config/ghostty/config      -> ~/.config/ghostty/config
 tmux/.config/tmux/tmux.conf         -> ~/.config/tmux/tmux.conf
 aerospace/.config/aerospace/...     -> ~/.config/aerospace/...
+sketchybar/.config/sketchybar/...   -> ~/.config/sketchybar/...
 starship/.config/starship.toml      -> ~/.config/starship.toml
 nvim/.config/nvim/                  -> ~/.config/nvim/   (vendored LazyVim)
 ```
