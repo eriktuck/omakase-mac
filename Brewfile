@@ -16,6 +16,7 @@ brew "bat"                            # modern cat
 brew "fzf"                            # fuzzy finder
 brew "ripgrep"                        # fast search (rg)
 brew "fd"                             # fast find
+brew "jq"                             # JSON processor (used by the Claude statusline)
 brew "zoxide"                         # smarter cd (z)
 brew "lazygit"                        # terminal git UI
 brew "git"                            # modern git over Apple's bundled build
@@ -30,6 +31,7 @@ brew "node"                           # Node.js runtime (npm bundled; we default
 brew "pnpm"                           # preferred JS package manager — no auto-run install scripts
 cask "docker-desktop"                 # Docker Desktop: CLI + engine + GUI (daemon included)
 cask "temurin@21"                     # Eclipse Temurin JDK 21 (LTS), macOS-registered
+cask "claude-code"                    # Claude Code CLI (the `claude` binary)
 
 # --- GUI apps ---
 cask "ghostty"                        # GPU-accelerated terminal

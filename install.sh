@@ -4,7 +4,7 @@ set -euo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BACKUP_DIR="$HOME/.omakase-backup/$(date +%Y%m%d-%H%M%S)"
-STOW_PACKAGES=(zsh ghostty tmux aerospace starship nvim)
+STOW_PACKAGES=(zsh ghostty tmux aerospace starship nvim claude)
 
 info()  { printf "\033[1;34m==>\033[0m %s\n" "$1"; }
 warn()  { printf "\033[1;33m!!\033[0m %s\n" "$1"; }
@@ -47,6 +47,7 @@ backup_if_real "$HOME/.config/ghostty/config"
 backup_if_real "$HOME/.config/tmux/tmux.conf"
 backup_if_real "$HOME/.config/aerospace/aerospace.toml"
 backup_if_real "$HOME/.config/starship.toml"
+backup_if_real "$HOME/.claude/statusline-command.sh"
 
 # 5. Stow symlinks ------------------------------------------------------------
 # Repo lives in $HOME, so stow's default target is $HOME (no --target needed).
@@ -54,7 +55,24 @@ info "Linking configs with GNU Stow..."
 cd "$REPO"
 stow --restow "${STOW_PACKAGES[@]}"
 
-# 6. Tmux plugin manager (TPM) + plugins -------------------------------------
+# 6. Claude Code status line --------------------------------------------------
+# statusline-command.sh is stowed above (claude package). settings.json is NOT
+# stowed because Claude Code rewrites it, which would clobber a symlink; instead
+# we idempotently merge the statusLine pointer into the existing file.
+info "Configuring Claude Code status line..."
+CLAUDE_SETTINGS="$HOME/.claude/settings.json"
+mkdir -p "$HOME/.claude"
+[ -f "$CLAUDE_SETTINGS" ] || echo '{}' >"$CLAUDE_SETTINGS"
+tmp_settings="$(mktemp)"
+if jq '.statusLine = {type: "command", command: "bash ~/.claude/statusline-command.sh"}' \
+     "$CLAUDE_SETTINGS" >"$tmp_settings"; then
+  mv "$tmp_settings" "$CLAUDE_SETTINGS"
+else
+  rm -f "$tmp_settings"
+  warn "Could not update $CLAUDE_SETTINGS (is jq installed?)."
+fi
+
+# 7. Tmux plugin manager (TPM) + plugins -------------------------------------
 TPM_DIR="$HOME/.config/tmux/plugins/tpm"
 if [ ! -d "$TPM_DIR" ]; then
   info "Cloning TPM (tmux plugin manager)..."
@@ -63,17 +81,17 @@ fi
 info "Installing tmux plugins..."
 "$TPM_DIR/bin/install_plugins" || warn "TPM install reported issues; run 'prefix + I' inside tmux."
 
-# 7. Neovim: sync pinned plugins headlessly ----------------------------------
+# 8. Neovim: sync pinned plugins headlessly ----------------------------------
 info "Syncing Neovim (LazyVim) plugins..."
 nvim --headless "+Lazy! restore" +qa 2>/dev/null || \
   nvim --headless "+Lazy! sync" +qa 2>/dev/null || \
   warn "Neovim plugin sync had issues; open nvim and run :Lazy."
 
-# 8. macOS system defaults ----------------------------------------------------
+# 9. macOS system defaults ----------------------------------------------------
 info "Applying macOS system defaults..."
 bash "$REPO/macos/defaults.sh"
 
-# 9. Manual follow-ups --------------------------------------------------------
+# 10. Manual follow-ups -------------------------------------------------------
 cat <<'EOF'
 
 ============================================================
