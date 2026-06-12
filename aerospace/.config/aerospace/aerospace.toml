@@ -15,19 +15,13 @@ default-root-container-orientation = 'auto'
 # Mouse follows focus when switching monitors/windows.
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
-# Notify SketchyBar to refresh workspace indicators on every switch.
-exec-on-workspace-change = [
-  '/bin/bash', '-c',
-  'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
-]
-
 # Gaps (Omarchy-style breathing room).
 [gaps]
 inner.horizontal = 8
 inner.vertical = 8
 outer.left = 8
 outer.bottom = 8
-outer.top = 40      # clears the 32px SketchyBar at the top of the screen
+outer.top = 8
 outer.right = 8
 
 # --- Main mode bindings (alt = primary modifier, i3-style) ---

@@ -4,7 +4,7 @@ set -euo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BACKUP_DIR="$HOME/.omakase-backup/$(date +%Y%m%d-%H%M%S)"
-STOW_PACKAGES=(zsh ghostty tmux aerospace starship nvim sketchybar)
+STOW_PACKAGES=(zsh ghostty tmux aerospace starship nvim)
 
 info()  { printf "\033[1;34m==>\033[0m %s\n" "$1"; }
 warn()  { printf "\033[1;33m!!\033[0m %s\n" "$1"; }
@@ -72,11 +72,6 @@ nvim --headless "+Lazy! restore" +qa 2>/dev/null || \
 # 8. macOS system defaults ----------------------------------------------------
 info "Applying macOS system defaults..."
 bash "$REPO/macos/defaults.sh"
-
-# 8b. SketchyBar service ------------------------------------------------------
-# `restart` is idempotent: starts it if stopped, reloads config if running.
-info "Starting SketchyBar..."
-brew services restart sketchybar || warn "Could not start SketchyBar; run 'brew services start sketchybar'."
 
 # 9. Manual follow-ups --------------------------------------------------------
 cat <<'EOF'

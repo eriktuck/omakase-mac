@@ -41,7 +41,6 @@ zsh/.zprofile                       -> ~/.zprofile
 ghostty/.config/ghostty/config      -> ~/.config/ghostty/config
 tmux/.config/tmux/tmux.conf         -> ~/.config/tmux/tmux.conf
 aerospace/.config/aerospace/...     -> ~/.config/aerospace/...
-sketchybar/.config/sketchybar/...   -> ~/.config/sketchybar/...
 starship/.config/starship.toml      -> ~/.config/starship.toml
 nvim/.config/nvim/                  -> ~/.config/nvim/   (vendored LazyVim)
 ```
