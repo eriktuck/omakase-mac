@@ -42,6 +42,23 @@ end if
 alt-o = 'exec-and-forget open -a "Obsidian"'
 alt-b = 'exec-and-forget open -a "Google Chrome"'
 
+# End-of-session: politely quit every foreground app (so background apps don't
+# get resurrected on the home screen after sleep/wake). Sends a normal quit, so
+# apps with unsaved work will still prompt. Finder is skipped; AeroSpace itself
+# is an accessory process and is excluded by the `background only is false` filter.
+alt-shift-q = '''exec-and-forget osascript -e '
+tell application "System Events"
+    set theApps to name of every application process whose background only is false
+end tell
+repeat with anApp in theApps
+    if anApp is not "Finder" then
+        try
+            tell application anApp to quit
+        end try
+    end if
+end repeat
+' '''
+
 # Focus movement
 alt-h = 'focus left'
 alt-j = 'focus down'
