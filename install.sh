@@ -4,7 +4,7 @@ set -euo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BACKUP_DIR="$HOME/.omakase-backup/$(date +%Y%m%d-%H%M%S)"
-STOW_PACKAGES=(zsh ghostty tmux aerospace starship nvim claude)
+STOW_PACKAGES=(zsh ghostty tmux aerospace starship nvim claude linearmouse)
 
 info()  { printf "\033[1;34m==>\033[0m %s\n" "$1"; }
 warn()  { printf "\033[1;33m!!\033[0m %s\n" "$1"; }
@@ -47,6 +47,7 @@ backup_if_real "$HOME/.config/ghostty/config"
 backup_if_real "$HOME/.config/tmux/tmux.conf"
 backup_if_real "$HOME/.config/aerospace/aerospace.toml"
 backup_if_real "$HOME/.config/starship.toml"
+backup_if_real "$HOME/.config/linearmouse/linearmouse.json"
 backup_if_real "$HOME/.claude/statusline-command.sh"
 
 # 5. Stow symlinks ------------------------------------------------------------
@@ -104,6 +105,8 @@ cat <<'EOF'
        System Settings > Privacy & Security > Accessibility
   3. Grant Ghostty Accessibility permission (for the global
        Ctrl+Esc quick-terminal hotkey).
-  4. Restart your shell (or open a new Ghostty window).
+  4. Launch LinearMouse and grant it Accessibility permission
+       (its scroll/acceleration config can't take effect without it).
+  5. Restart your shell (or open a new Ghostty window).
 ============================================================
 EOF

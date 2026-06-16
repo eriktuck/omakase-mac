@@ -1,0 +1,20 @@
+{
+  "$schema": "https://app.linearmouse.org/schema/0.11.2",
+  "schemes": [
+    {
+      "if": {
+        "device": {
+          "category": "mouse"
+        }
+      },
+      "scrolling": {
+        "acceleration": 0,
+        "distance": "8px",
+        "smoothed": {
+          "enabled": true,
+          "preset": "smooth"
+        }
+      }
+    }
+  ]
+}
