@@ -75,6 +75,15 @@ alt-shift-l = 'move right'
 alt-minus = 'resize smart -50'
 alt-equal = 'resize smart +50'
 
+# Join focused window with its neighbor into a nested container. Thanks to
+# opposite-orientation normalization (see top of file), joining left/right in a
+# horizontal row produces a *vertical* stack (and vice versa). E.g. focused on
+# the 3rd of three side-by-side tiles, alt-ctrl-h pulls it below the 2nd.
+alt-ctrl-h = 'join-with left'
+alt-ctrl-j = 'join-with down'
+alt-ctrl-k = 'join-with up'
+alt-ctrl-l = 'join-with right'
+
 # Layouts
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
