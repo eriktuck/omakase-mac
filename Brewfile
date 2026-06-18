@@ -37,7 +37,6 @@ cask "claude-code"                    # Claude Code CLI (the `claude` binary)
 cask "ghostty"                        # GPU-accelerated terminal
 cask "nikitabobko/tap/aerospace"      # i3-like tiling WM
 cask "raycast"                        # launcher / Spotlight replacement (cmd+space)
-cask "linearmouse"                    # kills mouse scroll acceleration (config stowed below)
 
 # --- Fonts ---
 cask "font-0xproto-nerd-font"
