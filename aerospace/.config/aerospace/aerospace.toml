@@ -24,6 +24,26 @@ outer.bottom = 8
 outer.top = 8
 outer.right = 8
 
+# Pin workspaces to monitors: odd numbers → external, even numbers → internal.
+# Matched by pattern (not hardcoded names) so it works at home and at the office
+# without edits — the external monitor's name differs but the rules don't:
+#   - 'built-in retina display' is a case-insensitive regex; the internal display
+#     is always named "Built-in Retina Display" on every Mac.
+#   - 'secondary' = the non-main monitor, i.e. whatever external is attached.
+# Assumes the built-in stays the *main* display (menu bar on the laptop). If you
+# ever make the external the main display, swap 'secondary' ↔ 'main' below.
+# With the laptop alone, the 'secondary' assignment simply falls back to it.
+[workspace-to-monitor-force-assignment]
+1 = 'secondary'
+3 = 'secondary'
+5 = 'secondary'
+7 = 'secondary'
+9 = 'secondary'
+2 = 'built-in retina display'
+4 = 'built-in retina display'
+6 = 'built-in retina display'
+8 = 'built-in retina display'
+
 # --- Main mode bindings (alt = primary modifier, i3-style) ---
 [mode.main.binding]
 
